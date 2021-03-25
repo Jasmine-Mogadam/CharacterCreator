@@ -4,6 +4,8 @@
     <title>Character Creator</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="functs.js"></script>
+    <script src="whitening.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -13,29 +15,28 @@
         <h1>Editor</h1>
         <form id="form">
           <label for="shape">Shape:</label><br>
-          <select id="shape" name="shape">
+          <select id="shape" name="shape" onclick="update()">
             <option value="circle">Circle</option>
             <option value="square">Square</option>
             <option value="triangle">Triangle</option>
           </select><br>
           <label for="limb">Limb(s):</label><br>
-          <select id="limb" name="limb">
+          <select id="limb" name="limb" onclick="update()">
             <option value="arms">Arms</option>
             <option value="tail">Tail</option>
             <option value="wings">Wings</option>
           </select><br>
           <label for="color">Body Color:</label><br>
-          <input type="color" id="color" name="color"><br><br>
-          <input type="button" value="Create!" onclick="update()">
+          <input type="color" id="color" name="color" onclick="update()"><br><br>
+          <!--input type="button" value="Create!" onclick="update()"-->
         </form>
     </div>
 
     <div class="grid-child-output">
         <h1>Output</h1>
         <div id="output-image">
-          <img id="creature" src=""></img>
-          <script>
-          function update(){
+          <img id="creature" src="circle.PNG"></img>
+          <script>function update(){
           var form = document.getElementById("form");
           var image = "body.PNG";
           if(form.elements[0].value==="circle"){
@@ -48,8 +49,7 @@
             image = "triangle.PNG";
           }
           document.getElementById('creature').src = image;
-          }
-          </script>
+        }</script>
         </div>
     </div>
 
@@ -62,19 +62,32 @@
 <button class="Btn">CLICK HERE</button>
 <h3>Click on the above button to combine the two images above together</h3>
 <script>
-   let imgEle1 = document.querySelectorAll(".image")[0];
-   let imgEle2 = document.querySelectorAll(".image")[1];
-   let resEle = document.querySelector(".result");
-   var context = resEle.getContext("2d");
-   let BtnEle = document.querySelector(".Btn");
-   BtnEle.addEventListener("click", () => {
-   resEle.width = imgEle1.width;
-      resEle.height = imgEle1.height;
-      context.globalAlpha = 1.0;
-      context.drawImage(imgEle1, 0, 0);
-      context.globalAlpha = 1.0;
-      context.drawImage(imgEle2, 0, 0);
-   });
+let imgEle1 = document.querySelectorAll(".image")[0];
+let imgEle2 = document.querySelectorAll(".image")[1];
+let resEle = document.querySelector(".result");
+var context = resEle.getContext("2d");
+let BtnEle = document.querySelector(".Btn");
+BtnEle.addEventListener("click", () => {
+resEle.width = imgEle1.width;
+   resEle.height = imgEle1.height;
+   context.globalAlpha = 1.0;
+   context.drawImage(imgEle1, 0, 0);
+   context.globalAlpha = 1.0;
+   context.drawImage(imgEle2, 0, 0);
+});
 </script>
+<div class="container">
+  <div class="column">
+    <img id="SourceImage" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCvDRFT1Pcnitm1mL0L5nC0PzQqYYfRdv9GA&usqp=CAU' crossorigin="Anonymous">
+  </div>
+  <div class="column">
+    <div class="canvas">
+      <canvas id="Canvas"></canvas>
+    </div>
+  </div>
+</div>
+
+<button id="PaintButton">Paint</button>
+<button id="EffectButton">Set to white</button>
   </body>
 </html>
