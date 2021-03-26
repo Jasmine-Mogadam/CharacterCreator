@@ -4,7 +4,7 @@ var canvas;
 var context;
 
 function init() {
-  var image = document.getElementById('SourceImage');
+  var image = document.getElementById('creature');
   effectButton = document.getElementById('EffectButton');
   paintButton = document.getElementById('PaintButton');
   canvas = document.getElementById('Canvas');
@@ -14,7 +14,8 @@ function init() {
   canvas.width = image.width;
   canvas.height = image.height;
 
-  paintButton.addEventListener('click', function () {
+  color.addEventListener('click', function () {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     drawImage(image);
     // Or
     // var image = new Image();
@@ -24,7 +25,7 @@ function init() {
     // image.src = 'image.jpg';
   });
 
-  effectButton.addEventListener('click', addEffect);
+  color.addEventListener('click', addEffect);
 }
 
 function drawImage(image) {
