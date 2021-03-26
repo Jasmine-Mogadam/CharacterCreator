@@ -37,15 +37,27 @@ function addEffect() {
     context.putImageData(imageData, 0, 0);
 }
 
+//function credit - https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
+function hexToRGB(hex, alpha) {
+    var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return {r,g,b,alpha};
+    } else {
+        return [r,g,b];
+    }
+}
+
 function changeToWhite(data) {
-  for (var i = 0; i < data.length; i++ ) {
-    //var red=imageData.data[index];
-    //var green=imageData.data[index+1];
-    //var blue=imageData.data[index+2];
-    //var alpha=imageData.data[index+3];
-    //if((red > 0 || green > 0 || blue > 0) && alpha == 1){
-      data[i] = 50;
-    //}
+  const colors = hexToRGB(document.getElementById("color").value,false);
+  for (var i = 0; i < data.length; i+=4 ) {
+    if(data[i]!=0||data[i+3]==0){
+      data[i] = colors[0];
+      data[i+1] = colors[1];
+      data[i+2] = colors[3];
+    }
   }
 }
 
