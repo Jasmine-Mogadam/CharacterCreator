@@ -4,37 +4,38 @@ var canvas;
 var context;
 
 function init() {
-  var image = document.getElementById('creature');
+  var image1 = document.getElementById('shape');
+  var image2 = document.getElementById('limb');
   effectButton = document.getElementById('EffectButton');
   paintButton = document.getElementById('PaintButton');
   canvas = document.getElementById('Canvas');
   context = canvas.getContext('2d');
 
   // Set the canvas the same width and height of the image
-  canvas.width = image.width;
-  canvas.height = image.height;
+  canvas.width = image1.width;
+  canvas.height = image1.height;
+  drawImage(image1,image2);
 
-  color.addEventListener('click', function () {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    drawImage(image);
-    // Or
-    // var image = new Image();
-    // image.onload = function () {
-    //    drawImage(image);
-    // }
-    // image.src = 'image.jpg';
-  });
-
-  color.addEventListener('click', addEffect);
+  //updates color every 10 miliseconds
+    let loop = setInterval(addEffect, 10);
 }
 
-function drawImage(image) {
-  context.drawImage(image, 0, 0);
+function drawImage(image1,image2) {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.globalAlpha = 1.0;
+  context.drawImage(image1, 0, 0);
+  context.globalAlpha = 1.0;
+  context.drawImage(image2, 0, 0);
+
+  //context.drawImage(image, 0, 0);
 }
 
 function addEffect() {
+  var image1 = document.getElementById('shape');
+  var image2 = document.getElementById('limb');
+    drawImage(image1,image2);
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    changeToWhite(imageData.data);
+    changeToColor(imageData.data);
     context.putImageData(imageData, 0, 0);
 }
 
@@ -51,13 +52,13 @@ function hexToRGB(hex, alpha) {
     }
 }
 
-function changeToWhite(data) {
+function changeToColor(data) {
   const colors = hexToRGB(document.getElementById("color").value,false);
   for (var i = 0; i < data.length; i+=4 ) {
     if(data[i]!=0||data[i+3]==0){
       data[i] = colors[0];
       data[i+1] = colors[1];
-      data[i+2] = colors[3];
+      data[i+2] = colors[2];
     }
   }
 }
