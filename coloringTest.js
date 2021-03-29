@@ -16,17 +16,17 @@ function init() {
   //let loop = setInterval(addEffect, 10);
 }
 
-function drawImage(image) {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.drawImage(image, 0, 0);
+function drawImage(image,cont) {
+  cont.clearRect(0, 0, canvas.width, canvas.height);
+  cont.drawImage(image, 0, 0);
 }
 
-function addEffect(colorID,accentID) {
-    var image = document.getElementById('creature');
-    drawImage(image);
+function addEffect(colorID,accentID,image,canv) {
+    cont = canv.getContext('2d');
+    drawImage(image,cont);
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     changeToColor(imageData.data,colorID,accentID);
-    context.putImageData(imageData, 0, 0);
+    canv.putImageData(imageData, 0, 0);
 }
 
 //function credit - https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
@@ -63,20 +63,20 @@ function changeToColor(data,colorID,accentID) {
 
 class Part{
     constructor(type, name, color, accent) {
-         this.type = type;  //part type; tail, body, etc
-         this.name = name;  //image name
-         this.color = color; //color input id
+         this.type = type;     //part type; tail, body, etc
+         this.name = name;     //image name
+         this.color = color;   //color input id
          this.accent = accent; //color input id
     }
 }
 
 class Creature{
     constructor(tail, backExtra, body, pattern, legs, frontExtra) {
-         this.tail = tail;  //a part
-         this.backExtra = backExtra;  //array of parts
-         this.body = body;
-         this.pattern = pattern;
-         this.frontExtra = frontExtra; //array of parts
+         this.tail = tail;              //a part
+         this.backExtra = backExtra;    //array of parts
+         this.body = body;              //a part
+         this.pattern = pattern;        //a part
+         this.frontExtra = frontExtra;  //array of parts
     }
 }
 
@@ -88,9 +88,9 @@ function findImage(name){
 //give a this.part, draws and colors image, creates a new canvas
 //figure out how to make a function return a canvas
 function colorImage(part){
-    let imgEle = findImage(part.name);
-    addEffect(part.color,part.accent);
-    //--coloring.js stuff--//
+    let imgEle = findImage(part.name); //gets image url
+    canv = document.createElement("CANVAS");
+    addEffect(part.color,part.accent,imgEle,canv);
 }
 
 function mergeCanvas (canMerge, can){
