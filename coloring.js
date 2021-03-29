@@ -1,39 +1,29 @@
-var effectButton;
-var paintButton;
 var canvas;
 var context;
 
 function init() {
-  var image1 = document.getElementById('shape');
-  var image2 = document.getElementById('limb');
+  var image = document.getElementById('creature');
   effectButton = document.getElementById('EffectButton');
   paintButton = document.getElementById('PaintButton');
   canvas = document.getElementById('Canvas');
   context = canvas.getContext('2d');
 
   // Set the canvas the same width and height of the image
-  canvas.width = image1.width;
-  canvas.height = image1.height;
-  drawImage(image1,image2);
-
+  canvas.width = image.width;
+  canvas.height = image.height;
+  drawImage(image);
   //updates color every 10 miliseconds
-    let loop = setInterval(addEffect, 10);
+  let loop = setInterval(addEffect, 10);
 }
 
-function drawImage(image1,image2) {
+function drawImage(image) {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.globalAlpha = 1.0;
-  context.drawImage(image1, 0, 0);
-  context.globalAlpha = 1.0;
-  context.drawImage(image2, 0, 0);
-
-  //context.drawImage(image, 0, 0);
+  context.drawImage(image, 0, 0);
 }
 
 function addEffect() {
-  var image1 = document.getElementById('shape');
-  var image2 = document.getElementById('limb');
-    drawImage(image1,image2);
+    var image = document.getElementById('creature');
+    drawImage(image);
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     changeToColor(imageData.data);
     context.putImageData(imageData, 0, 0);
@@ -53,7 +43,7 @@ function hexToRGB(hex, alpha) {
 }
 
 function changeToColor(data) {
-  const colors = hexToRGB(document.getElementById("color").value,false);
+  const colors = hexToRGB(document.getElementById("color1").value,false);
   for (var i = 0; i < data.length; i+=4 ) {
     if(data[i]!=0||data[i+3]==0){
       data[i] = colors[0];
