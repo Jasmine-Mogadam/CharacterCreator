@@ -87,9 +87,9 @@ function findImage(name){
 
 //give a this.part, draws and colors image, creates a new canvas
 //figure out how to make a function return a canvas
-function colorImage(part){
+function colorImage(part,num){
     let imgEle = findImage(part.name); //gets image url
-    canv = document.createElement("CANVAS");
+    canv = document.createElement("Canvas");
     addEffect(part.color,part.accent,imgEle,canv);
 }
 
