@@ -16,20 +16,20 @@ $(document).ready(function(){
   // For each object div, create a form <select> with each costume and creates a color changer box
   $('.objectForm').each(function() {
     var id = $(this).attr('id');
-    var names = $(this).attr('names').split(",");
-    var costumes = $(this).attr('costumes').split(",");
+    var name = $(this).attr('name');
+    let costumes = $(this).attr('costumes').split(",");
 
     var strToAppend = '' +
-    '<label for='+ id+'>'+id+':</label><br>' +
-    '<select id='+ id+' name='+ id+' onchange="update()">';
+    '<label for=' + name + '>' + name + ':</label><br>' +
+    '<select id=' + name + ' name=' + name + ' onchange="update()">';
 
-    names.forEach((n) => {
-      strToAppend += '<option value='+ n+'>'+ n+'</option>';
+    costumes.forEach((c) => {
+      strToAppend += '<option value='+ c +'>'+ c +'</option>';
     });
 
     strToAppend += '</select><br>' +
-    '<label for="color">'+id+' Color:</label><br>' +
-    '<input type="color" id="color" name="color" onchange="update()">';
+    '<label for="color">'+name+' Color:</label><br>' +
+    '<input type="color" id="color' + id + '" name="' + name + ' color" onchange="update()">';
 
     $(this).append(strToAppend);
   });
@@ -37,23 +37,22 @@ $(document).ready(function(){
   // For each object div, create a script to change costumes
   $('.objectScript').each(function() {
     var id = $(this).attr('id');
-    var names = $(this).attr('names').split(",");
-    var costumes = $(this).attr('costumes').split(",");
+    let costumes = $(this).attr('costumes').split(",");
 
     var strToAppend = '<script>function update(){' +
     'var form = document.getElementById("form");' +
     'var image = "body.PNG";' +
-    'if(form.elements[0].value==="circle"){' +
-    '  image = "https://pinkflamess.github.io/circle.PNG";}' +
+    'if(form.elements[' + id + '].value==="' + costumes[0] + '"){' +
+    '  image = "' + costumes[0] + '.PNG";}';
 
-    names.forEach((n) => {
-      strToAppend += 'else if(form.elements[0].value==="square"){' +
-      'image = "https://pinkflamess.github.io/circle.PNG";}';
-    });
+    for (let i = 1; i < costumes.length; i++) {
+      strToAppend += 'else if(form.elements[' + id + '].value==="' + costumes[i] + '"){' +
+      'image = "' + costumes[i] + '.PNG";}';
+    }
 
-    strToAppend += 'document.getElementById('creature').src = image;}</script>';
+    strToAppend += 'document.getElementById("creature").src = image;}</script>';
 
     $(this).append(strToAppend);
   });
 
-}
+});

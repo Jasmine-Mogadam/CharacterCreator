@@ -51,6 +51,7 @@ form{
 
 .grid-child-input{
     width: 100%;
+    /*height: 100vh; aaaaaaaaaaaaaaaaaaaa*/
     background-color: #F3D3BD;
     transition: width 1s;
 }

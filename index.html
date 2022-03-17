@@ -4,7 +4,9 @@
     <title>Character Creator</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <script src="coloringTest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="colorCanvasImage.js"></script>
+    <script src="populateBoxes.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -12,7 +14,9 @@
     <div class="grid-child-input">
         <h1>Editor</h1>
         <form id="form">
-          <label for="shape">Shape:</label><br>
+          <div class="objectForm" id = 0 name = "Shape" costumes="Circle,Square,Triangle"></div>
+
+          <!--label for="shape">Shape:</label><br>
           <select id="shape" name="shape" onchange="update()">
             <option value="circle">Circle</option>
             <option value="square">Square</option>
@@ -25,37 +29,40 @@
             <option value="wing">Wings</option>
           </select><br>
           <label for="color">Body Color:</label><br>
-          <input type="color" id="color" name="color" onchange="update()">
+          <input type="color" id="color" name="color" onchange="update()"-->
         </form>
     </div>
     <div class="grid-child-output">
         <h1>Output</h1>
         <div id="output-image">
           <div class="container">
-            <img id="creature" src="https://pinkflamess.github.io/circle.PNG" crossorigin="Anonymous" hidden></img>
+            <img id="creature" src="Circle.PNG" crossorigin="Anonymous" hidden="">
             </div>
               <div class="canvas">
-                <canvas id="Canvas"></canvas>
+                <canvas id="Canvas" width="500" height="500"></canvas>
               </div>
             </div>
           </div>
 
-          <script>function update(){
-          var form = document.getElementById("form");
-          var image = "body.PNG";
+          <div class="objectScript" id = 0 costumes="Circle,Square,Triangle"></div>
+          <!--script>
+            function update(){
+            //var prefix = "https://jasmine-mogadam.github.io/"
+            var form = document.getElementById("form");
+            var image = "body.PNG";
 
-          if(form.elements[0].value==="circle"){
-            image = "https://pinkflamess.github.io/circle.PNG";
-          }
-          else if(form.elements[0].value==="square"){
-            image = "https://pinkflamess.github.io/square.PNG";
-          }
-          else if(form.elements[0].value==="triangle"){
-            image = "https://pinkflamess.github.io/triangle.PNG";
-          }
-          document.getElementById('creature').src = image;
-          }
-        </script>
+            if(form.elements[0].value==="circle"){
+              image = "circle.PNG";
+            }
+            else if(form.elements[0].value==="square"){
+              image = "square.PNG";
+            }
+            else if(form.elements[0].value==="triangle"){
+              image = "triangle.PNG";
+            }
+            document.getElementById('creature').src = image;
+            }
+          </script-->
         </div>
     </div>
   </div>
