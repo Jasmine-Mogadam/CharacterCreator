@@ -1,36 +1,39 @@
-var effectButton;
-var paintButton;
-var canvas;
-var context;
-
-function init() {
-  var image = document.getElementById('creature');
-  effectButton = document.getElementById('EffectButton');
-  paintButton = document.getElementById('PaintButton');
-  canvas = document.getElementById('Canvas');
-  context = canvas.getContext('2d');
-
+//function colorCanvasImage(image,canvas,id) {
+function colorCanvasImage(canvas,id) {
+  var context = canvas.getContext('2d');
+  var image = document.getElementById('image' + id);
+  var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
   // Set the canvas the same width and height of the image
   canvas.width = 500;
   canvas.height = 500;
   canvas.width = image.width;
   canvas.height = image.height;
-  drawImage(image);
 
   //updates color every 10 miliseconds
-    let loop = setInterval(addEffect, 50);
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.drawImage(image, 0, 0);
+  changeToColor(imageData.data,id);
+  context.putImageData(imageData, 0, 0);
+  console.log("Painting " + image.src);
+  //addEffect(id);
+  //let loop = setInterval(addEffect, 50);
 }
 
-function drawImage(image) {
+//function drawImage(image,canvas,id) {
+function drawImage(canvas,id) {
+  var context = canvas.getContext('2d');
+  var image = document.getElementById('image' + id);
+  console.log("Drawing " + image.src);
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(image, 0, 0);
 }
 
-function addEffect() {
-    var image = document.getElementById('creature');
-    drawImage(image);
+function addEffect(id) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 0, 0);
+    var image = document.getElementById('image' + id);
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    changeToColor(imageData.data);
+    changeToColor(imageData.data,id);
     context.putImageData(imageData, 0, 0);
 }
 
@@ -47,8 +50,8 @@ function hexToRGB(hex, alpha) {
     }
 }
 
-function changeToColor(data) {
-  const colors = hexToRGB(document.getElementById("color0").value,false);
+function changeToColor(data,id) {
+  const colors = hexToRGB(document.getElementById("color"+id).value,false);
   for (var i = 0; i < data.length; i+=4 ) {
     if(data[i]!=0||data[i+3]==0){
       data[i] = colors[0];
@@ -57,8 +60,6 @@ function changeToColor(data) {
     }
   }
 }
-
-window.addEventListener('load', init);
 
 /*
 

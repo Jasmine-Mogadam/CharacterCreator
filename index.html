@@ -11,60 +11,22 @@
   </head>
   <body>
     <div class="grid-container">
-    <div class="grid-child-input">
-        <h1>Editor</h1>
-        <form id="form">
-          <div class="objectForm" id = 0 name = "Shape" costumes="Circle,Square,Triangle"></div>
-
-          <!--label for="shape">Shape:</label><br>
-          <select id="shape" name="shape" onchange="update()">
-            <option value="circle">Circle</option>
-            <option value="square">Square</option>
-            <option value="triangle">Triangle</option>
-          </select><br>
-          <label for="limb">Limb(s):</label><br>
-          <select id="limb" name="limb" onchange="update()">
-            <option value="eye">Eyes</option>
-            <option value="tail">Tail</option>
-            <option value="wing">Wings</option>
-          </select><br>
-          <label for="color">Body Color:</label><br>
-          <input type="color" id="color" name="color" onchange="update()"-->
-        </form>
-    </div>
-    <div class="grid-child-output">
-        <h1>Output</h1>
-        <div id="output-image">
-          <div class="container">
-            <img id="creature" src="Circle.PNG" crossorigin="Anonymous" hidden="">
-            </div>
-              <div class="canvas">
-                <canvas id="Canvas" width="500" height="500"></canvas>
-              </div>
-            </div>
+      <div class="grid-child-input">
+          <h1>Editor</h1>
+          <form id="form">
+            <div class="objectForm" id = 0 name = "Shape" costumes="Circle,Square,Triangle"></div>
+            <div class="objectForm" id = 1 name = "Eye" costumes="Circle Eye,Square Eye,Triangle Eye"></div>
+          </form>
+      </div>
+      <div class="grid-child-output">
+          <h1>Output</h1>
+          <div class="outputImage">
+            <div class = "objectCanvas" id = 0 costumes="Circle,Square,Triangle"></div>
+            <div class = "objectCanvas" id = 1 costumes="Circle Eye,Square Eye,Triangle Eye"></div>
           </div>
-
-          <div class="objectScript" id = 0 costumes="Circle,Square,Triangle"></div>
-          <!--script>
-            function update(){
-            //var prefix = "https://jasmine-mogadam.github.io/"
-            var form = document.getElementById("form");
-            var image = "body.PNG";
-
-            if(form.elements[0].value==="circle"){
-              image = "circle.PNG";
-            }
-            else if(form.elements[0].value==="square"){
-              image = "square.PNG";
-            }
-            else if(form.elements[0].value==="triangle"){
-              image = "triangle.PNG";
-            }
-            document.getElementById('creature').src = image;
-            }
-          </script-->
-        </div>
+      </div>
+      <div class="objectScript" id = 0 costumes="Circle,Square,Triangle"></div>
+      <div class="objectScript" id = 1 costumes="Circle Eye,Square Eye,Triangle Eye"></div>
     </div>
-  </div>
   </body>
 </html>
