@@ -56,18 +56,21 @@ form{
     transition: width 1s;
 }
 
+/*
 .grid-child-input:hover{
     width: 150%;
     transition: width 1s;
-}
+}*/
 .grid-child-output{
     width: 100%;
     transition: width 1s;
 }
+
+/*
 .grid-child-input:hover ~ .grid-child-output{
     width: 110%;
     transition: width 1s;
-}
+}*/
 
 .container {
   display: flex;

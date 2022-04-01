@@ -1,13 +1,11 @@
 //function colorCanvasImage(image,canvas,id) {
 function colorCanvasImage(canvas,id) {
+  canvas.width = 500;
+  canvas.height = 500;
   var context = canvas.getContext('2d');
   var image = document.getElementById('image' + id);
   var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
   // Set the canvas the same width and height of the image
-  canvas.width = 500;
-  canvas.height = 500;
-  canvas.width = image.width;
-  canvas.height = image.height;
 
   //updates color every 10 miliseconds
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -15,20 +13,22 @@ function colorCanvasImage(canvas,id) {
   changeToColor(imageData.data,id);
   context.putImageData(imageData, 0, 0);
   console.log("Painting " + image.src);
-  //addEffect(id);
-  //let loop = setInterval(addEffect, 50);
+
+  addEffect(id,context,canvas,image)
+  let loop = setInterval(addEffect(id,context,canvas,image), 100);
 }
 
 //function drawImage(image,canvas,id) {
 function drawImage(canvas,id) {
   var context = canvas.getContext('2d');
   var image = document.getElementById('image' + id);
+  //loadImage(image)
   console.log("Drawing " + image.src);
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(image, 0, 0);
 }
 
-function addEffect(id) {
+function addEffect(id,context,canvas,image) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(image, 0, 0);
     var image = document.getElementById('image' + id);
@@ -59,6 +59,41 @@ function changeToColor(data,id) {
       data[i+2] = colors[2];
     }
   }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function loadImage(url) {
+  return new  Promise(resolve => {
+    const image = new Image();
+    image.addEventListener('load', () => {
+        resolve(image);
+    });
+    image.src = url;
+});
+}
+
+function update(id,list){
+  let costumes = list.split(",");
+  var canvas = document.getElementById("canvas"+id);
+  var object = document.getElementById("form").elements[id*2].value;
+  var image;
+  console.log("Selected: " + object);
+
+  costumes.forEach(costume =>{
+      if(object === costume){
+        document.getElementById("image"+id).src = costume + ".PNG";
+        image = costume + ".PNG";
+      }
+  });
+  loadImage(image).then(updatec(id));
+}
+
+function updatec(id){
+  var canvas = document.getElementById("canvas"+id);
+  colorCanvasImage(canvas,id)
 }
 
 /*
