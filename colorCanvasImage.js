@@ -14,6 +14,7 @@ function colorCanvasImage(canvas,id) {
   context.putImageData(imageData, 0, 0);
   console.log("Painting " + image.src);
 
+  loadImage(image.src).then(addEffect(id,context,canvas,image));
   addEffect(id,context,canvas,image)
   let loop = setInterval(addEffect(id,context,canvas,image), 100);
 }
@@ -67,7 +68,7 @@ function sleep(ms) {
 
 function loadImage(url) {
   return new  Promise(resolve => {
-    const image = new Image();
+    image = new Image();
     image.addEventListener('load', () => {
         resolve(image);
     });
@@ -88,7 +89,7 @@ function update(id,list){
         image = costume + ".PNG";
       }
   });
-  loadImage(image).then(updatec(id));
+  updatec(id);
 }
 
 function updatec(id){

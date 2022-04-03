@@ -45,6 +45,17 @@ $(document).ready(function(){
     $(this).append(strToAppend);
   });
 
+  $('.scriptInit').each(function() {
+    var max = $(this).attr('max');
+
+    var strToAppend = '<script>\n';
+    for (let i = 0; i <= max; i++) {
+      strToAppend += '  loadImage("' + document.getElementById('image' + i).src + '").then(updatec(' + i + '));\n';
+    }
+    strToAppend += '</script>';
+    $(this).append(strToAppend);
+  });
+
   // For each object div, create two scripts; one to change costumes and another to change colors
   /*
   $('.objectScript').each(function() {
