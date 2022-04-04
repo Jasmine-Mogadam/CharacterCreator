@@ -16,7 +16,7 @@ function colorCanvasImage(canvas,id) {
 
   loadImage(image.src).then(addEffect(id,context,canvas,image));
   addEffect(id,context,canvas,image)
-  let loop = setInterval(addEffect(id,context,canvas,image), 100);
+  //let loop = setInterval(addEffect(id,context,canvas,image), 100);
 }
 
 //function drawImage(image,canvas,id) {
