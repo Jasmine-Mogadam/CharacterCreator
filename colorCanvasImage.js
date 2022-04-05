@@ -1,5 +1,5 @@
 //function colorCanvasImage(image,canvas,id) {
-function colorCanvasImage(canvas,id) {
+async function colorCanvasImage(canvas,id) {
   canvas.width = 500;
   canvas.height = 500;
   var context = canvas.getContext('2d');
@@ -14,7 +14,7 @@ function colorCanvasImage(canvas,id) {
   context.putImageData(imageData, 0, 0);
   console.log("Painting " + image.src);
 
-  loadImage(image.src).then(addEffect(id,context,canvas,image));
+  await loadImage(image.src).then(addEffect(id,context,canvas,image));
   addEffect(id,context,canvas,image)
   //let loop = setInterval(addEffect(id,context,canvas,image), 100);
 }
@@ -90,6 +90,8 @@ function update(id,list){
       }
   });
   updatec(id);
+  //await sleep(200);
+  //updatec(id);
 }
 
 function updatec(id){
