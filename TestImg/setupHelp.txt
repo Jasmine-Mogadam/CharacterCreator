@@ -1,0 +1,11 @@
+TEST FORM DIVS
+--------------
+<div class="objectForm" id = 0 name = "Shape" colors= "1,1,1" costumes="Circle,Square,Triangle"></div>
+<div class="objectForm" id = 1 name = "Eye" colors= "1,1,1" costumes="Circle Eye,Square Eye,Triangle Eye"></div>
+
+TEST CANVAS DIVS
+----------------
+<div class = "objectCanvas" id = 0 costumes="Circle,Square,Triangle"></div>
+<div class = "objectCanvas" id = 1 costumes="Circle Eye,Square Eye,Triangle Eye"></div>
+
+Change popBoxes canvas gen and update() hrefs from img/ to TestImg/ before running

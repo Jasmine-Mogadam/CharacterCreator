@@ -21,10 +21,12 @@ $(document).ready(function(){
 
     var strToAppend = '' +
     '<label for=' + name + '>' + name + ':</label><br>' +
-    '<select id=' + name + ' name=' + name + ' onchange="update(' + id + ', \'' + costumes + '\')">';
+    '<select id=' + id + ' name=' + name + ' onchange="update(' + id + ')">';
 
+    var i = 0;
     costumes.forEach((c) => {
-      strToAppend += '<option value="'+ c +'">'+ c +'</option>';
+      strToAppend += '<option value="'+ i +'">'+ c +'</option>';
+      i++;
     });
 
     strToAppend += '</select><br>' +
@@ -39,7 +41,7 @@ $(document).ready(function(){
     var id = $(this).attr('id');
     let costumes = $(this).attr('costumes').split(",");
 
-    var strToAppend = '<img id="image' + id + '" src="' + costumes[0] + '.PNG" crossorigin="Anonymous" hidden="">' +
+    var strToAppend = '<img id="image' + id + '" src="img/' + id + '-0.PNG" crossorigin="Anonymous" hidden="">' +
     '<canvas class = "Canvas" id="canvas' + id + '" width="500" height="500" style="z-index:' + id + ';top:' + id*-500 + 'px;"></canvas>';
 
     $(this).append(strToAppend);
@@ -50,7 +52,7 @@ $(document).ready(function(){
 
     var strToAppend = '<script>\n';
     for (let i = 0; i <= max; i++) {
-      strToAppend += '  loadImage("' + document.getElementById('image' + i).src + '").then(updatec(' + i + '));\n';
+      strToAppend += '  updatec(' + i + ');\n';
     }
     strToAppend += '</script>';
     $(this).append(strToAppend);

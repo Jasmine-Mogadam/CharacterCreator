@@ -76,22 +76,10 @@ function loadImage(url) {
 });
 }
 
-function update(id,list){
-  let costumes = list.split(",");
-  var canvas = document.getElementById("canvas"+id);
+function update(id){
   var object = document.getElementById("form").elements[id*2].value;
-  var image;
-  console.log("Selected: " + object);
-
-  costumes.forEach(costume =>{
-      if(object === costume){
-        document.getElementById("image"+id).src = costume + ".PNG";
-        image = costume + ".PNG";
-      }
-  });
+  document.getElementById("image"+id).src = "img/" + id + "-" + object + ".PNG";
   updatec(id);
-  //await sleep(200);
-  //updatec(id);
 }
 
 function updatec(id){
