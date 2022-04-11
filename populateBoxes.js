@@ -18,6 +18,18 @@ $(document).ready(function(){
     var id = $(this).attr('id');
     var name = $(this).attr('name');
     let costumes = $(this).attr('costumes').split(",");
+    let colors = $(this).attr('costumes').split(",");
+    let sub0 = $(this).attr('sub0').split(",");
+    let sub1 = ["unused"]
+    let sub2 = ["unused"]
+
+    //Allows 3 layers of sub costuming. Find way for infinite subbing?
+    if (sub0.includes("1")){
+      let sub1 = $(this).attr('sub1').split(",");
+      if (sub1.includes("1")){
+        let sub2 = $(this).attr('sub1').split(",");
+      }
+    }
 
     var strToAppend = '' +
     '<label for=' + name + '>' + name + ':</label><br>' +
@@ -38,11 +50,13 @@ $(document).ready(function(){
 
   // For each object div, create a canvas with a z-value of the id
   $('.objectCanvas').each(function() {
-    var id = $(this).attr('id');
-    let costumes = $(this).attr('costumes').split(",");
+    var max = $(this).attr('max');
 
-    var strToAppend = '<img id="image' + id + '" src="img/' + id + '-0.PNG" crossorigin="Anonymous" hidden="">' +
-    '<canvas class = "Canvas" id="canvas' + id + '" width="500" height="500" style="z-index:' + id + ';top:' + id*-500 + 'px;"></canvas>';
+    var strToAppend = "";
+
+    for(var i = 0; i <= max; i++)
+      strToAppend += '<img id="image' + i + '" src="img/' + i + '-0.PNG" crossorigin="Anonymous" hidden="">' +
+      '<canvas class = "Canvas" id="canvas' + i + '" width="500" height="500" style="z-index:' + i + ';"></canvas>';
 
     $(this).append(strToAppend);
   });

@@ -14,20 +14,18 @@
       <div class="grid-child-input">
           <h1>Editor</h1>
           <form id="form">
-            <div class="objectForm" id = 0 name = "Shape" colors= "1,1,1" costumes="Circle,Square,Triangle"></div>
-            <div class="objectForm" id = 1 name = "Eye" colors= "1,1,1" costumes="Circle Eye,Square Eye,Triangle Eye"></div>
-            <label> No art for yet:</label>
-            <div class="objectForm" id = 2 name = "Mouth" colors= "1,1,2,1,2" costumes="Circle Eye,Square Eye,Triangle Eye"></div>
+            <div class="objectForm" id = 0 name = "Body" colors= "1,1,1,1,1" sub0="0,0,0,0,0" costumes="Circle,Egg,Chubb,Fluff,Cube"></div>
+            <div class="objectForm" id = 1 name = "Eyes" colors= "1,1,1,1,1,1,1,1,1,1" sub0="0,0,0,0,0,0,0,0,0,0,0" costumes="Simple,Dark,Shiny,Scared,Stars,Excited,Content,Happy,Sad,Angry"></div>
+            <div class="objectForm" id = 2 name = "Feet" colors= "1,1,1,1,1" sub0="0,0,0,0,0" costumes="Realistic,Simple,Webbed,Small"></div>
           </form>
       </div>
       <div class="grid-child-output">
           <h1>Output</h1>
           <div class="outputImage">
-            <div class = "objectCanvas" id = 0 costumes="Circle,Square,Triangle"></div>
-            <div class = "objectCanvas" id = 1 costumes="Circle Eye,Square Eye,Triangle Eye"></div>
+            <div class = "objectCanvas" max = 2></div>
           </div>
       </div>
-      <div class="scriptInit" max = 1></div>
+      <div class="scriptInit" max = 2></div>
     </div>
   </body>
 </html>
